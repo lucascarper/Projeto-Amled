@@ -14,7 +14,7 @@
         <nav class="nav">
           {% if user.is_authenticated %}
             <a href="{% url 'clientes:list' %}">Início</a>
-            <a href="{% url 'logout' %}">Sair</a>
+            <a href="{% url 'logout' %}?next={% url 'login' %}">Sair</a>
           {% else %}
             <a href="{% url 'login' %}">Entrar</a>
           {% endif %}
