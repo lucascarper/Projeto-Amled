@@ -1,0 +1,181 @@
+/* Core styles for Amled */
+:root{
+  --amled-blue:#003cff;
+  --amled-bg:#f5f8ff;
+  --amled-accent:#e8eeff;
+  --text:#0b1220;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color:var(--text);
+  background:var(--amled-bg);
+}
+
+.header{
+  background:var(--amled-blue);
+  color:#fff;
+}
+.header .container{
+  max-width:1100px;
+  margin:0 auto;
+  padding:12px 16px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.brand{
+  color:#fff;
+  font-weight:800;
+  font-size:1.25rem;
+  text-decoration:none;
+}
+.nav a{
+  color:#fff;
+  margin-left:14px;
+  text-decoration:none;
+  font-weight:600;
+}
+.nav .user{
+  color:rgba(255,255,255,0.9);
+  margin-left:14px;
+}
+
+.container{
+  max-width:1100px;
+  margin:24px auto;
+  padding:0 16px;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  background:#fff;
+  box-shadow:0 1px 2px rgba(16,24,40,0.05);
+}
+th, td{
+  padding:10px 12px;
+  border-bottom:1px solid #eef4ff;
+}
+th{
+  text-align:left;
+  background:var(--amled-accent);
+  color:var(--amled-blue);
+  font-weight:700;
+}
+
+a.btn{
+  display:inline-block;
+  padding:8px 12px;
+  background:var(--amled-blue);
+  color:#fff;
+  border-radius:6px;
+  text-decoration:none;
+  font-weight:600;
+}
+
+a.action-link{
+  color:var(--amled-blue);
+  text-decoration:none;
+  font-weight:600;
+  margin-right:8px;
+}
+
+.form-card{
+  background:#fff;
+  padding:18px;
+  border-radius:8px;
+  box-shadow:0 1px 3px rgba(16,24,40,0.06);
+}
+
+/* Form layout */
+.form-card form{max-width:760px}
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px 16px;
+}
+.form-row{grid-column:1 / -1}
+label{display:block;margin-bottom:6px;font-weight:700;color:#24324a}
+input[type="text"], input[type="email"], textarea{
+  width:100%;
+  padding:10px 12px;
+  border:1px solid #e6eefc;
+  border-radius:8px;
+  background:#fff;
+  font-size:0.98rem;
+  color:var(--text);
+}
+textarea{min-height:120px}
+.field-error{color:#b91c1c;font-size:0.9rem;margin-top:6px}
+.form-actions{display:flex;gap:10px;margin-top:16px}
+.form-note{color:#556080;font-size:0.95rem;margin-top:8px}
+
+/* make first field span full width on small screens */
+@media (max-width:640px){
+  .form-grid{grid-template-columns:1fr}
+}
+
+/* Avaliacao form: compact checklist */
+.checklist-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:8px 12px;
+}
+.check-item{
+  display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:8px;background:linear-gradient(180deg,#fff,#fbfdff);border:1px solid #eef6ff;font-size:0.95rem
+}
+.check-item input{width:16px;height:16px}
+.compact-textarea{min-height:80px}
+.avaliacao-top{display:flex;gap:12px;align-items:center;justify-content:space-between}
+.avaliacao-meta{color:#556080;font-size:0.95rem}
+.avaliacao-actions{display:flex;gap:8px;margin-top:12px}
+
+@media (max-width:900px){
+  .checklist-grid{grid-template-columns:repeat(1,1fr)}
+}
+
+/* Login page tweaks */
+.auth-wrap{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:60vh;
+}
+.auth-box{
+  width:420px;
+}
+
+footer{opacity:0.7; text-align:center; margin:40px 0 12px}
+
+/* Clients grid / card styles */
+.clients-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+  gap:16px;
+  margin-top:12px;
+}
+.client-card{
+  background:#fff;
+  border-radius:10px;
+  padding:14px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  box-shadow:0 6px 18px rgba(3,15,85,0.06);
+  transition:transform .12s ease, box-shadow .12s ease;
+}
+.client-card:hover{transform:translateY(-4px); box-shadow:0 12px 28px rgba(3,15,85,0.08)}
+.client-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.client-name{font-weight:800;color:var(--amled-blue);font-size:1.05rem}
+.client-meta{color:#556080;font-size:0.95rem;margin-top:6px}
+.client-meta small{color:#7b88a8}
+.actions{display:flex;gap:8px;margin-top:12px}
+.btn-secondary{display:inline-block;padding:8px 10px;border-radius:8px;background:#eef4ff;color:var(--amled-blue);text-decoration:none;font-weight:700}
+.btn-danger{display:inline-block;padding:8px 10px;border-radius:8px;background:#ffeef0;color:#b91c1c;text-decoration:none;font-weight:700}
+.badge{display:inline-block;padding:6px 10px;border-radius:999px;font-weight:800;font-size:0.85rem}
+.badge.aprovado{background:#16a34a;color:#fff}
+.badge.reprovado{background:#ef4444;color:#fff}
+.badge.aguardando{background:#f59e0b;color:#08203b}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div style="display:flex;align-items:center;justify-content:space-between">
+    <h1>Avaliação Amled</h1>
+    <a class="btn" href="{% url 'clientes:create' %}">Novo cliente</a>
+  </div>
+
+  <div class="clients-grid">
+    {% for c in clients %}
+      <div class="client-card">
+        <div>
+          <div class="client-header">
+            <div class="client-name">{{ c.nome }}</div>
+            {% if c.status == 'aprovado' %}
+              <span class="badge aprovado">Aprovado</span>
+            {% elif c.status == 'reprovado' %}
+              <span class="badge reprovado">Reprovado</span>
+            {% else %}
+              <span class="badge aguardando">Aguardando</span>
+            {% endif %}
+          </div>
+          <div class="client-meta">
+            <div><small>Email:</small> {{ c.email|default:'—' }}</div>
+            <div><small>Telefone:</small> {{ c.telefone|default:'—' }}</div>
+          </div>
+        </div>
+        <div class="actions">
+          <a class="btn-secondary" href="{% url 'clientes:edit' c.pk %}">Editar</a>
+          <a class="btn-danger" href="{% url 'clientes:delete' c.pk %}">Excluir</a>
+          <a class="btn" href="{% url 'clientes:avaliar' c.pk %}">Avaliar</a>
+        </div>
+      </div>
+    {% empty %}
+      <div class="form-card">Nenhum cliente cadastrado.</div>
+    {% endfor %}
+  </div>
+{% endblock %}

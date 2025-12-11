@@ -1,0 +1,17 @@
+{% load static %}
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Projeto Amled - Login</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  </head>
+  <body>
+    <div class="auth-wrap">
+      <div class="auth-box form-card">
+        {% block content %}{% endblock %}
+      </div>
+    </div>
+  </body>
+</html>

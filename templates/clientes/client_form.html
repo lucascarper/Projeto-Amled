@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+    <h1>{% if client %}Editar Cliente{% else %}Novo Cliente{% endif %}</h1>
+    <a class="btn" href="{% url 'clientes:list' %}">Voltar à lista</a>
+  </div>
+
+  <div class="form-card">
+    <form method="post">
+      {% csrf_token %}
+      <div class="form-grid">
+        <div class="form-row">
+          <label for="{{ form.nome.id_for_label }}">Nome</label>
+          {{ form.nome }}
+          {% if form.nome.errors %}
+            <div class="field-error">{{ form.nome.errors.as_text|escape }}</div>
+          {% endif %}
+        </div>
+
+        <div>
+          <label for="{{ form.email.id_for_label }}">Email</label>
+          {{ form.email }}
+          {% if form.email.errors %}
+            <div class="field-error">{{ form.email.errors.as_text|escape }}</div>
+          {% endif %}
+        </div>
+
+        <div>
+          <label for="{{ form.telefone.id_for_label }}">Telefone</label>
+          {{ form.telefone }}
+          {% if form.telefone.errors %}
+            <div class="field-error">{{ form.telefone.errors.as_text|escape }}</div>
+          {% endif %}
+        </div>
+
+      </div>
+
+      <div class="form-actions">
+        <button class="btn" type="submit">Salvar</button>
+        <a class="btn-secondary" href="{% url 'clientes:list' %}">Cancelar</a>
+      </div>
+    </form>
+  </div>
+{% endblock %}

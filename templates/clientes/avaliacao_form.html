@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+    <h1>Avaliar: {{ client.nome }}</h1>
+    <a class="btn" href="{% url 'clientes:list' %}">Voltar</a>
+  </div>
+
+  <div class="form-card">
+    <form method="post">
+      {% csrf_token %}
+
+      <div class="avaliacao-top">
+        <div class="avaliacao-meta">Avaliação rápida — marque os itens observados</div>
+        <div>
+          <label>Aprovado?</label>
+          {{ form.aprovado }}
+        </div>
+      </div>
+
+      <div class="checklist-grid" style="margin-top:12px">
+        {% for field in form.visible_fields %}
+          {% if field.name != 'aprovado' and field.name != 'observacoes_avaliador' and field.name != 'pontos_fortes' and field.name != 'pontos_a_melhorar' %}
+            <label class="check-item">{{ field }} <span>{{ field.label }}</span></label>
+          {% endif %}
+        {% endfor %}
+      </div>
+
+      <div style="margin-top:12px" class="form-grid">
+        <div class="form-row">
+          <label for="{{ form.observacoes_avaliador.id_for_label }}">Observações do avaliador</label>
+          {{ form.observacoes_avaliador }}
+        </div>
+        <div>
+          <label for="{{ form.pontos_fortes.id_for_label }}">Pontos fortes</label>
+          {{ form.pontos_fortes }}
+        </div>
+        <div>
+          <label for="{{ form.pontos_a_melhorar.id_for_label }}">Pontos a melhorar</label>
+          {{ form.pontos_a_melhorar }}
+        </div>
+      </div>
+
+      <div class="avaliacao-actions">
+        <button class="btn" type="submit">Salvar avaliação</button>
+        <a class="btn-secondary" href="{% url 'clientes:list' %}">Cancelar</a>
+      </div>
+
+    </form>
+  </div>
+{% endblock %}
